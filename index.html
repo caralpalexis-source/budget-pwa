@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <title>budget</title>
+
+    <link rel='stylesheet' href='../common/styles.css'>
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2" defer></script>
+
+ 
+
+    <!-- Librairies externes -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+
+    <!-- Scripts de blocs (PLUS DE MODULES) -->
+    <script src="Bloc1.js" defer></script>
+    <script src="Bloc2.js" defer></script>
+    <script src="Bloc3.js" defer></script>
+    <script src="Bloc4.js" defer></script>
+
+    <!-- Routines -->
+    <script src="routines.js" defer></script>
+
+    <!-- Utilitaires communs -->
+    <script src='utils.js' defer></script>
+
+    <!-- Script principal -->
+    <script src="main.js" defer></script>
+
+    <!-- Service Worker minimal-->
+    <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js")
+          .then(() => console.log("SW enregistré"))
+          .catch(err => console.error("SW erreur", err));
+      });
+    }
+    </script>
+
+</head>
+
+<body>
+
+<div class="en-tete">
+  
+  <!-- Logo à gauche -->
+  <div class="en-tete-gauche">
+    <img src="../common/img/Budget.png" alt="logo budget" class="image-fixe"/>
+  </div>
+
+  <!-- Titre au centre -->
+  <div class="en-tete-centre">
+    <h1>Suivi de budget</h1> 
+  </div>
+
+  <!-- Infos à droite -->
+  <div class="en-tete-droite">
+    <div class="infos-supp">
+      <div class="header-utils">
+        <button class="btn-utils" onclick="exporterDonnees()">Exporter</button>
+        <label class="btn-utils" style="margin-left:5px; cursor:pointer;">
+            Importer
+            <input type="file" id="importJsonFile" accept="application/json" style="display:none"
+                   onchange="importerDonnees(event)">
+        </label>
+        
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Conteneur pour les blocs -->
+<div class="container-blocs">
+
+    <!-- Bloc Charges -->
+    <div class="bloc-kpi" id="Bloc1">
+        <img src="../common/img/Charges.jfif" alt="logo charge" class="image-fixe"/>
+        <h2>Charges</h2>
+        <div id="warningBloc1" 
+            style="display:none; 
+            margin-top:10px; 
+            padding:10px; 
+            background:#ffe6e6; 
+            border:1px solid #ff8080; 
+            color:#a30000; 
+            border-radius:8px; 
+            font-weight:bold;">
+        </div>
+
+        <div class="sous-blocs-ligne">
+            <div class="sous-bloc" id="SousBloc1">
+                <h3>Fixes</h3>
+            </div>
+
+            <div class="sous-bloc" id="SousBloc2">
+                <h3>Variables</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bloc Recettes -->
+    <div class="bloc-kpi" id="Bloc2">
+        <img src="../common/img/Recettes.jfif" alt="logo recettes" class="image-fixe"/>
+        <h2>Revenus</h2>
+
+        <div class="sous-blocs-ligne">
+            <div class="sous-bloc" id="SousBloc3">
+                <h3>Fixes</h3>
+            </div>
+
+            <div class="sous-bloc" id="SousBloc4">
+                <h3>Variables</h3>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</div>
+
+
+<div class="container-blocs">
+
+    <!-- Bloc Suivi -->
+    <div class="bloc-kpi" id="Bloc3">
+      <img src="../common/img/Suivi.jfif" alt="logo suivi" class="image-fixe"/>
+      <h2>Suivi</h2>
+
+      <div id="Bloc3Content" style="display:flex; gap:20px; width:100%;">
+          <div class=sous-bloc id="SousBloc3A" >
+          
+          </div>
+          <div class=sous-bloc id="SousBloc3B"> 
+            <h3>Courbe de suivi des dépenses</h3>
+          <canvas id="courbeDepenses"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloc Reste à engager -->
+    <div class="bloc-kpi" id="Bloc4">
+        <img src="../common/img/Reste.jfif" alt="logo reste" class="image-fixe"/>
+        <h2>Reste à engager</h2>
+
+        <div id="Bloc3Content" style="display:flex; gap:20px; width:100%;">
+          <div class=sous-bloc id="SousBloc4A" >
+             <h3>Répartition des dépenses variables</h3>
+                <div class="chart-wrapper">
+                    <canvas id="pieVariables"></canvas>
+                </div>
+          </div>
+          <div class=sous-bloc id="SousBloc4B"> 
+            <h3>Reste à engager</h3>
+          <canvas id="waterfallChart" width="600" height="400"></canvas>
+        </div>
+      </div>
+          
+    </div>
+</div>
+   
+
+</div>
+
+
+</body>
+
+<footer class="footer-version">
+  Suivi Budget v1.2 | Refresh Bug Fix | Auteur: Alexis Caralp | Date: 28/01/2026</footer>
+
+<!-- Panneau Debug -->
+
+<button class="btn-utils" onclick="resetFinDeMois()" style="
+  position:fixed;bottom:10px;right:10px;z-index:10000;
+  background:#444;color:#fff;padding:6px 10px;
+  border:none;border-radius:5px;cursor:pointer;font-size:12px;">    🔄 Reset fin de mois</button>
+
+</html>
