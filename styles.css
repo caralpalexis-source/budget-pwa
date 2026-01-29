@@ -1,0 +1,84 @@
+/* Titres */
+h1 {text-align:center;font-family:Gilroy;font-weight:bold;color:#0d0d0e;font-size:60px;}
+h2 {text-align:center;font-family:Gilroy;font-weight:bold;color:rgb(238, 46, 174);font-size:30px;margin:5px 0;}
+h3 {text-align:center;font-family:Gilroy;font-weight:bold;color:#0c23ec;font-size:20px;white-space:pre-line;}
+
+/* Conteneur blocs KPI */
+/* reset box-sizing si pas déjà présent */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+/* style commun des containers */
+.container-blocs {display: grid; gap: 20px; width: 100%; padding: 10px 20px; box-sizing: border-box; align-items: stretch; justify-items: stretch;  /* si la page est trop étroite, on autorise le scroll horizontal */
+  overflow-x: auto; scrollbar-gutter: stable;}
+
+/* ligne 1 : 4 colonnes égales */
+.container-blocs.row-4 {  grid-template-columns: repeat(4, 1fr);}
+
+/* lignes avec 2 colonnes égales */
+.container-blocs.row-2 {  grid-template-columns: repeat(2, 1fr);}
+
+/* optionnel : limiter la largeur des blocs */
+.bloc-kpi {  padding: 18px;  border-radius: 16px;  border: 2px solid #ccc;  background: #f9f9f9;  box-shadow: 0 4px 12px rgba(0,0,0,0.08);  display: flex;  flex-direction: column;  align-items: center; 
+  justify-content: flex-start;  box-sizing: border-box; width:100%; max-width: 100%;}
+
+/* Conteneur pour aligner Fixes et Variables */
+.sous-blocs-ligne {display: flex;gap: 10px;width: 100%;margin-top: 10px;}
+/* Chaque sous-bloc prend 50% */
+.sous-bloc {flex: 1; min-width: 0;border: 1px solid #ccc;    /* facultatif */  padding: 10px;  border-radius: 8px;  background: #f7f7f7;       /* facultatif */}
+.sous-bloc canvas {    width: 100% ;    height: auto;    display: block;}
+#SousBloc3B canvas {    height: 300px;}
+#SousBloc4A .chart-wrapper {    position: relative;    height: 280px;   /* 👈 OBLIGATOIRE */    width: 100%;}
+#SousBloc4A canvas {    width: 100% !important;    height: 100% !important;    display: block;}
+
+
+
+/* En-tête */
+.en-tete {display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 12px rgba(3,23,239,0.1);padding:10px 20px;background-color:#53dacf;border:2px solid #ccc;border-radius:15px;}
+.en-tete-centre {text-align:center;flex:1;font-family:Gilroy;font-weight:bold;color:#0c23ec;font-size:80px;}
+.en-tete-centre h1 {margin:0;font-size:60px;}
+.en-tete-droite {display:flex;flex-direction:column;gap:8px;}
+.en-tete img {width:120px;height:auto;}
+.infos-supp {font-size:0.2em;font-style:italic;font-weight:normal;color:#666;margin-right:20px;}
+.footer-version {text-align:center;font-size:12px;color:#666;padding:10px;border-top:1px solid #ccc;margin-top:30px;}
+
+/* listes */
+.liste-charges {list-style-type: none;  padding: 0;  margin-top: 8px;}
+.liste-charges li {  padding: 4px 0;  border-bottom: 1px solid #ddd;}
+.liste-charges-container {   margin-top: 10px;}
+
+.ligne-charge { display: grid; grid-template-columns: 1fr auto auto auto auto;; align-items: center; padding: 6px 0;  border-bottom: 1px solid #ddd;  gap: 10px; }
+
+.ligne-charge span { font-size: 14px;}
+
+.totaux {font-size: 14px; font-style:italic; color: #444;}
+
+.input-engage { width: 60px;}
+
+.form-ajout { margin-top: 10px; display: flex; gap: 6px;}
+.form-ajout input { flex: 1; padding: 5px;    border: 1px solid #aaa;    border-radius: 4px;}
+
+
+.btn-ajouter {    padding: 6px 10px;    background: #2ecc71;    border: none;    color: white;    border-radius: 5px;    cursor: pointer;}
+.btn-supprimer {background: #c0392b;color: white; border: none; padding: 3px 8px; border-radius: 4px; cursor: pointer;flex: 0 0 auto; width: auto ; max-width: fit-content;}
+.btn-utils {  background:#444;  color:#fff;  padding:6px 10px;  border:none;  border-radius:5px;  cursor:pointer;  font-size:12px;}
+.btn-utils:hover {  background:#666;}
+
+/* Images */
+.image-fixe {width:100px;height:100px;object-fit:cover;border-radius:10px;display:block;margin:0 auto;}
+.vignette {width:200px;height:80px;object-fit:contain;border-radius:10px;display:block;margin:0 auto;}
+
+.header-utils {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+
+
+
+
+
+
+
