@@ -79,8 +79,8 @@ function lancerProgrammeBloc4() {
             ],
         },
         options: {
-            responsive: true,
-            maintainAspectRatio:false,
+            responsive: false,
+            maintainAspectRatio:true,
             animation: false,
 
             plugins: {
