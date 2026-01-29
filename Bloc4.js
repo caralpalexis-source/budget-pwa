@@ -32,9 +32,6 @@ function lancerProgrammeBloc4() {
 
     // --- Taille fixe du canvas ---
     const canvas = document.getElementById("waterfallChart");
-    canvas.width = 400;
-    canvas.height = 300;
-
     const ctx = canvas.getContext("2d");
 
     if (waterfallChart) waterfallChart.destroy();
@@ -81,7 +78,8 @@ function lancerProgrammeBloc4() {
             ],
         },
         options: {
-            responsive: false,
+            responsive: true,
+            maintainAspectRatio:false,
             animation: false,
 
             plugins: {
