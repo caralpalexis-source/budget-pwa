@@ -134,36 +134,37 @@
       <img src="./Suivi.jfif" alt="logo suivi" class="image-fixe"/>
       <h2>Suivi</h2>
 
-      <div id="Bloc3Content" style="display:flex; gap:20px; width:100%;">
-          <div class=sous-bloc id="SousBloc3A" >
-          
-          </div>
-          <div class=sous-bloc id="SousBloc3B"> 
-            <h3>Courbe de suivi des dépenses</h3>
+      <div id="Bloc3Content" class="sous-blocs-ligne">
+        <div class="sous-bloc" id="SousBloc3A"></div>
+
+        <div class="sous-bloc" id="SousBloc3B">
+          <h3>Courbe de suivi des dépenses</h3>
           <canvas id="courbeDepenses"></canvas>
         </div>
       </div>
     </div>
 
     <!-- Bloc Reste à engager -->
-    <div class="bloc-kpi" id="Bloc4">
-        <img src="./Reste.jfif" alt="logo reste" class="image-fixe"/>
-        <h2>Reste à engager</h2>
+    <div class="bloc-kpi" id="Bloc4A">
+      <img src="./Reste.jfif" alt="logo reste" class="image-fixe"/>
+      <h2>Dépenses variables</h2>
 
-        <div id="Bloc4Content" style="display:flex; gap:20px; width:100%;">
-          <div class=sous-bloc id="SousBloc4A" >
-             <h3>Répartition des dépenses variables</h3>
-                <div class="chart-wrapper">
-                    <canvas id="pieVariables"></canvas>
-                </div>
-          </div>
-          <div class=sous-bloc id="SousBloc4B"> 
-            <h3>Reste à engager</h3>
-          <canvas id="waterfallChart" width="600" height="400"></canvas>
-        </div>
+      <div class="chart-box">
+        <h3>Répartition des dépenses variables</h3>
+        <canvas id="pieVariables"></canvas>
       </div>
-          
     </div>
+
+    <div class="bloc-kpi bloc-fullwidth" id="Bloc4B">
+      <img src="./Reste.jfif" alt="logo reste" class="image-fixe"/>
+      <h2>Reste à engager</h2>
+
+      <h3>Reste à engager</h3>
+      <div class="chart-wrapper">
+        <canvas id="waterfallChart"></canvas>
+      </div>
+    </div>
+
 </div>
    
 

@@ -32,7 +32,6 @@ function lancerProgrammeBloc4() {
 
     // --- Taille fixe du canvas ---
     const canvas = document.getElementById("waterfallChart");
-    canvas.width = 400; canvas.height = 300 ;
     const ctx = canvas.getContext("2d");
 
     if (waterfallChart) waterfallChart.destroy();
@@ -112,18 +111,17 @@ function lancerProgrammeBloc4() {
 
 
 
-//*Répartition dépenses variables
-
+// Répartition dépenses variables
 let pieVariablesChart = null;
 
 function lancerProgrammeBloc4A() {
 
-    const container = document.getElementById("SousBloc4A");
+    const bloc = document.getElementById("Bloc4A");
     const canvas = document.getElementById("pieVariables");
 
-    if (!container || !canvas) return;
+    if (!bloc || !canvas) return;
 
-    // Sécurité : données du Bloc 1 disponibles ?
+    // Données disponibles ?
     if (typeof window.getRepartitionVariablesEngagees !== "function") {
         console.warn("Répartition des variables engagées non disponible");
         return;
@@ -131,13 +129,8 @@ function lancerProgrammeBloc4A() {
 
     const dataVars = window.getRepartitionVariablesEngagees();
 
-    // Aucune dépense engagée
-    if (!dataVars.length) {
-        const title = container.querySelector("h3");
-        if (title) {
-            title.textContent = "Aucune dépense variable engagée";
-        }
-
+    // Aucune dépense
+    if (!dataVars || dataVars.length === 0) {
         if (pieVariablesChart) {
             pieVariablesChart.destroy();
             pieVariablesChart = null;
@@ -145,15 +138,16 @@ function lancerProgrammeBloc4A() {
         return;
     }
 
-    const total = dataVars.reduce((sum, c) => sum + c.montant, 0);
+    const total = dataVars.reduce((sum, c) => sum + Number(c.montant || 0), 0);
     if (total <= 0) return;
 
     const labels = dataVars.map(c => c.nom);
     const values = dataVars.map(c => c.montant);
 
-    // Nettoyage ancien graphe
+    // Nettoyage propre
     if (pieVariablesChart) {
         pieVariablesChart.destroy();
+        pieVariablesChart = null;
     }
 
     pieVariablesChart = new Chart(canvas, {
@@ -167,10 +161,11 @@ function lancerProgrammeBloc4A() {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            animation: false,
             plugins: {
                 tooltip: {
                     callbacks: {
-                        label: function (context) {
+                        label: (context) => {
                             const value = context.raw;
                             const percent = ((value / total) * 100).toFixed(1);
                             return `${value} € (${percent} %)`;
@@ -184,6 +179,10 @@ function lancerProgrammeBloc4A() {
         }
     });
 }
+
+window.lancerProgrammeBloc4A = lancerProgrammeBloc4A;
+
+
 
 
 
