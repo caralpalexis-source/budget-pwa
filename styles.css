@@ -11,7 +11,7 @@ h3 {text-align:center;font-family:Gilroy;font-weight:bold;color:#0c23ec;font-siz
 
 /* style commun des containers */
 .container-blocs {display: grid; gap: 20px; width: 100%; padding: 10px 20px; box-sizing: border-box; align-items: stretch; justify-items: stretch;  /* si la page est trop étroite, on autorise le scroll horizontal */
-  overflow-x: auto; scrollbar-gutter: stable;}
+  overflow-x: hidden; scrollbar-gutter: stable;}
 
 /* ligne 1 : 4 colonnes égales */
 .container-blocs.row-4 {  grid-template-columns: repeat(4, 1fr);}
@@ -61,9 +61,14 @@ h3 {text-align:center;font-family:Gilroy;font-weight:bold;color:#0c23ec;font-siz
 
 
 .btn-ajouter {    padding: 6px 10px;    background: #2ecc71;    border: none;    color: white;    border-radius: 5px;    cursor: pointer;}
+.btn-modifier {    background: #3498db;  /* bleu clair pour différencier */    color: white;    border: none;    padding: 3px 8px; /* comme btn-supprimer */
+    border-radius: 4px;/* idem */ cursor: pointer;    flex: 0 0 auto;    width: auto;    max-width: fit-content;    font-size: 14px;  /* taille adaptée à PC + iPhone */
+    line-height: 1;}
+.btn-modifier:active {    background: #2980b9;        /* effet appui */}
 .btn-supprimer {background: #c0392b;color: white; border: none; padding: 3px 8px; border-radius: 4px; cursor: pointer;flex: 0 0 auto; width: auto ; max-width: fit-content;}
 .btn-utils {  background:#444;  color:#fff;  padding:6px 10px;  border:none;  border-radius:5px;  cursor:pointer;  font-size:12px;}
 .btn-utils:hover {  background:#666;}
+button {  -webkit-appearance: none;  appearance: none;}
 
 /* Images */
 .image-fixe {width:100px;height:100px;object-fit:cover;border-radius:10px;display:block;margin:0 auto;}
@@ -146,6 +151,7 @@ h3 { font-size: 16px; }
 button,
 .btn-ajouter,
 .btn-supprimer,
+.btn-modifier,
 .btn-utils {
   padding: 10px 12px;
   font-size: 14px;
