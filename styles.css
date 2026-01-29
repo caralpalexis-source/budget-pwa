@@ -77,7 +77,123 @@ h3 {text-align:center;font-family:Gilroy;font-weight:bold;color:#0c23ec;font-siz
 
 
 
+/* =========================
+   📱 MOBILE FIRST – IPHONE
+   ========================= */
 
+/* Titres */
+h1 { font-size: 32px; }
+h2 { font-size: 20px; }
+h3 { font-size: 16px; }
+
+/* Header */
+.en-tete {
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+}
+
+.en-tete-centre {
+  font-size: 36px;
+}
+
+.en-tete img {
+  width: 80px;
+}
+
+.header-utils {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Containers KPI → 1 colonne */
+.container-blocs {
+  grid-template-columns: 1fr !important;
+  padding: 10px;
+  gap: 14px;
+  overflow-x: hidden;
+}
+
+/* Blocs */
+.bloc-kpi {
+  padding: 14px;
+  border-radius: 14px;
+}
+
+/* Sous-blocs → colonne */
+.sous-blocs-ligne {
+  flex-direction: column;
+}
+
+/* Charts */
+#SousBloc3B canvas,
+#SousBloc4A .chart-wrapper {
+  height: 220px;
+}
+
+/* Listes */
+.ligne-charge {
+  grid-template-columns: 1fr auto auto;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.input-engage {
+  width: 55px;
+}
+
+/* Boutons */
+button,
+.btn-ajouter,
+.btn-supprimer,
+.btn-utils {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+/* Images */
+.image-fixe {
+  width: 70px;
+  height: 70px;
+}
+
+.vignette {
+  width: 140px;
+  height: auto;
+}
+
+
+/* =========================
+   💻 TABLETTE & DESKTOP
+   ========================= */
+@media (min-width: 768px) {
+
+  h1 { font-size: 60px; }
+  h2 { font-size: 30px; }
+  h3 { font-size: 20px; }
+
+  .en-tete {
+    flex-direction: row;
+  }
+
+  .container-blocs.row-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .container-blocs.row-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sous-blocs-ligne {
+    flex-direction: row;
+  }
+
+  #SousBloc3B canvas,
+  #SousBloc4A .chart-wrapper {
+    height: 280px;
+  }
+}
 
 
 
