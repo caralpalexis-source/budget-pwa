@@ -179,7 +179,7 @@ h3 { text-align: center; font-family: Gilroy; font-weight: bold; color: #0c23ec;
   .sous-bloc { width: 100%; min-width: 0; }
 
   /* Waterfall mobile */
-  #SousBloc4A { height: 220px; }
+  #SousBloc4A { height: 150px; }
 
   .ligne-charge { grid-template-columns: 1fr auto auto; gap: 6px; font-size: 13px; }
   .input-engage { width: 55px; }
