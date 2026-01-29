@@ -62,7 +62,7 @@ function lancerProgrammeBloc4() {
                 {
                     label: "Montants",
                     data: values,
-                    barThickness: 55,
+                    maxBarThickness: 55,
                     backgroundColor: [
                         "#ff6666",
                         "#ffcc66",
