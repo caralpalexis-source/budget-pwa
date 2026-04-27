@@ -232,3 +232,155 @@ h3 { text-align: center; font-family: Gilroy; font-weight: bold; color: #0c23ec;
   #SousBloc4A .chart-wrapper { height: 280px; }
 
 }
+
+/* =========================
+   BLOC 5 - EPARGNE UX/UI
+   ========================= */
+
+#Bloc5 {
+  background: linear-gradient(135deg, #f7fbff 0%, #eef7f1 100%);
+  border: 1px solid rgba(60, 120, 80, 0.18);
+  box-shadow: 0 12px 35px rgba(40, 80, 60, 0.12);
+  border-radius: 22px;
+  padding: 24px;
+}
+
+#Bloc5 h2 {
+  font-size: 30px;
+  color: #184d2b;
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
+}
+
+#Bloc5 h3 {
+  color: #24593a;
+  font-size: 20px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+#Bloc5 .sous-blocs-ligne {
+  gap: 18px;
+  align-items: stretch;
+}
+
+#Bloc5 .sous-bloc {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(60, 120, 80, 0.15);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 8px 20px rgba(30, 70, 45, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#Bloc5 .sous-bloc:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(30, 70, 45, 0.14);
+}
+
+#Bloc5 .bloc-epargne-total {
+  max-width: 520px;
+  margin: 0 auto 12px auto;
+  background: linear-gradient(135deg, #dff5e8 0%, #ffffff 100%);
+  border: 1px solid rgba(36, 120, 70, 0.25);
+}
+
+#Bloc5 .sous-bloc-epargne {
+  min-width: 210px;
+  position: relative;
+  overflow: hidden;
+}
+
+#Bloc5 .sous-bloc-epargne::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 5px;
+  width: 100%;
+  background: linear-gradient(90deg, #56ab6f, #9fd86b);
+}
+
+#Bloc5 .ligne-epargne {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+#Bloc5 .ligne-epargne label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #3e5f48;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+#Bloc5 input[type="number"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(70, 120, 85, 0.25);
+  background: #ffffff;
+  color: #173d27;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: right;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+#Bloc5 input[type="number"]:focus {
+  border-color: #4caf6d;
+  box-shadow: 0 0 0 4px rgba(76, 175, 109, 0.16);
+  background: #fbfffc;
+}
+
+#Bloc5 input[readonly] {
+  background: linear-gradient(135deg, #e6f8ed, #f8fff9);
+  border-color: rgba(45, 140, 80, 0.28);
+  color: #126132;
+  cursor: not-allowed;
+}
+
+#warningBloc5 {
+  animation: bloc5WarningPop 0.25s ease;
+}
+
+@keyframes bloc5WarningPop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#Bloc5 #warningBloc5 {
+  background: #fff4df !important;
+  border: 1px solid #ffb84d !important;
+  color: #7a4300 !important;
+  box-shadow: 0 8px 20px rgba(180, 100, 20, 0.12);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  #Bloc5 .sous-blocs-ligne {
+    flex-direction: column;
+  }
+
+  #Bloc5 .bloc-epargne-total {
+    max-width: 100%;
+  }
+}
+#Bloc5 .detail-epargne {
+  font-style: italic;
+  font-size: 20px;
+  color: #4a6b57;
+  margin-top: 4px;
+  text-align: right;
+}

@@ -24,11 +24,13 @@ function sauvegarder() {
     let chargesVariables = JSON.parse(localStorage.getItem("chargesVariables") || "[]");
     let revsFixes = JSON.parse(localStorage.getItem("revsFixes") || "[]");
     let revsVariables = JSON.parse(localStorage.getItem("revsVariables") || "[]");
+    let bloc5Epargne = JSON.parse(localStorage.getItem("bloc5Epargne") || "{}");
 
     localStorage.setItem("chargesFixes", JSON.stringify(chargesFixes));
     localStorage.setItem("chargesVariables", JSON.stringify(chargesVariables));
     localStorage.setItem("revsFixes", JSON.stringify(revsFixes));
     localStorage.setItem("revsVariables", JSON.stringify(revsVariables));
+    localStorage.setItem("bloc5Epargne", JSON.stringify(bloc5Epargne));
 }
 
 function exporterDonnees() {
@@ -60,41 +62,99 @@ function exporterXLS() {
         return;
     }
 
-    // Récupération des totaux block 4 et block 5
-    const bloc4 = JSON.parse(localStorage.getItem("totalParLigne") || "{}");
-    const bloc5 = JSON.parse(localStorage.getItem("totauxParLigne") || "{}");
+    const wb = XLSX.utils.book_new();
 
-    const lignes = [];
+    // =========================
+    // Onglet Totaux existants
+    // =========================
+    const bloc4 = JSON.parse(localStorage.getItem("totalParLigne") || "{}");
+    const bloc5Old = JSON.parse(localStorage.getItem("totauxParLigne") || "{}");
+
+    const lignesTotaux = [];
 
     for (const ligne in bloc4) {
-        lignes.push({
+        lignesTotaux.push({
+            Source: "Bloc4",
             Semaine: ligne,
             Produit: "Heures",
             Valeur: bloc4[ligne].heures || 0
         });
-        lignes.push({
+
+        lignesTotaux.push({
+            Source: "Bloc4",
             Semaine: ligne,
             Produit: "NB",
             Valeur: bloc4[ligne].nb || 0
         });
     }
 
-    for (const ligne in bloc5) {
-        lignes.push({
+    for (const ligne in bloc5Old) {
+        lignesTotaux.push({
+            Source: "Ancien Bloc5",
             Semaine: ligne,
             Produit: "Objectif",
-            Valeur: bloc5[ligne].objectif || 0
+            Valeur: bloc5Old[ligne].objectif || 0
         });
-        lignes.push({
+
+        lignesTotaux.push({
+            Source: "Ancien Bloc5",
             Semaine: ligne,
             Produit: "Réalisé",
-            Valeur: bloc5[ligne].realise || 0
+            Valeur: bloc5Old[ligne].realise || 0
         });
     }
 
-    const wb = XLSX.utils.book_new();
-    const ws = XLSX.utils.json_to_sheet(lignes);
-    XLSX.utils.book_append_sheet(wb, ws, "Totaux");
+    const wsTotaux = XLSX.utils.json_to_sheet(lignesTotaux);
+    XLSX.utils.book_append_sheet(wb, wsTotaux, "Totaux");
+
+    // =========================
+    // Onglet Épargne Bloc5
+    // =========================
+    const epargne = JSON.parse(localStorage.getItem("bloc5Epargne") || "{}");
+
+    const getVal = (id) => Number(epargne[id] || 0);
+
+    const lignesEpargne = [
+        {
+            Type: "Total",
+            Categorie: "EPARGNE",
+            CumulInjection: getVal("epargneTotalCumulInjection"),
+            MoisPrecedent: getVal("epargneTotalMoisPrecedent"),
+            ObjectifMois: getVal("epargneTotalObjMois")
+        },
+        {
+            Type: "Catégorie",
+            Categorie: "PEA",
+            CumulInjection: getVal("peaCumulInjection"),
+            MoisPrecedent: getVal("peaMoisPrecedent"),
+            ObjectifMois: getVal("peaObjMois")
+        },
+        {
+            Type: "Catégorie",
+            Categorie: "Saisonnier",
+            CumulInjection: getVal("saisonnierCumulInjection"),
+            MoisPrecedent: getVal("saisonnierMoisPrecedent"),
+            ObjectifMois: getVal("saisonnierObjMois")
+        },
+        {
+            Type: "Catégorie",
+            Categorie: "Matelas",
+            CumulInjection: getVal("matelasCumulInjection"),
+            MoisPrecedent: getVal("matelasMoisPrecedent"),
+            ObjectifMois: getVal("matelasObjMois")
+        },
+        {
+            Type: "Catégorie",
+            Categorie: "Projets",
+            CumulInjection: getVal("projetsCumulInjection"),
+            MoisPrecedent: getVal("projetsMoisPrecedent"),
+            ObjectifMois: getVal("projetsObjMois")
+        }
+    ];
+
+    const wsEpargne = XLSX.utils.json_to_sheet(lignesEpargne);
+    XLSX.utils.book_append_sheet(wb, wsEpargne, "Epargne");
+
     XLSX.writeFile(wb, "export_budget.xlsx");
 }
 
@@ -156,6 +216,28 @@ function resetFinDeMois() {
     // Dépenses → purge
     // =========================
     localStorage.removeItem("depenses");
+
+    // =========================
+    // Bloc 5 Épargne
+    // On garde les cumuls injection
+    // On remet les répartitions mensuelles à 0
+    // =========================
+    let bloc5Epargne = JSON.parse(localStorage.getItem("bloc5Epargne") || "{}");
+
+    bloc5Epargne.epargneTotalMoisPrecedent = 0;
+    bloc5Epargne.epargneTotalObjMois = 0;
+
+    bloc5Epargne.peaMoisPrecedent = 0;
+    bloc5Epargne.saisonnierMoisPrecedent = 0;
+    bloc5Epargne.matelasMoisPrecedent = 0;
+    bloc5Epargne.projetsMoisPrecedent = 0;
+
+    bloc5Epargne.peaObjMois = 0;
+    bloc5Epargne.saisonnierObjMois = 0;
+    bloc5Epargne.matelasObjMois = 0;
+    bloc5Epargne.projetsObjMois = 0;
+
+    localStorage.setItem("bloc5Epargne", JSON.stringify(bloc5Epargne));
 
     // =========================
     // Rafraîchissement UI

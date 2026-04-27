@@ -24,6 +24,7 @@
     <script src="Bloc2.js" defer></script>
     <script src="Bloc3.js" defer></script>
     <script src="Bloc4.js" defer></script>
+    <script src="Bloc5.js" defer></script>
 
     <!-- Routines -->
     <script src="routines.js" defer></script>
@@ -166,12 +167,135 @@
     </div>  
 
 </div>
+<div class="container-blocs">
 
+<!-- Bloc Épargne -->
+  <div class="bloc-kpi bloc-fullwidth" id="Bloc5">
+    <img src="./Epargne.jfif" alt="logo epargne" class="image-fixe"/>
+    <h2>Épargne</h2>
+
+    <div id="warningBloc5"
+      style="display:none;
+      margin-top:10px;
+      padding:10px;
+      background:#ffe6e6;
+      border:1px solid #ff8080;
+      color:#a30000;
+      border-radius:8px;
+      font-weight:bold;">
+    </div>
+
+    <!-- Totaux Épargne -->
+    <div class="sous-blocs-ligne">
+      <div class="sous-bloc bloc-epargne-total">
+        <h3>EPARGNE</h3>
+
+        <div class="ligne-epargne">
+          <label>Cumul injection</label>
+          <input id="epargneTotalCumulInjection" type="number" value="1520" readonly>
+          <div id="detailLivretA" class="detail-epargne"></div>
+        </div>
+
+        <div class="ligne-epargne">
+          <label>Mois précédent</label>
+          <input id="epargneTotalMoisPrecedent" type="number" value="500">
+        </div>
+
+        <div class="ligne-epargne">
+          <label>Obj/mois</label>
+          <input id="epargneTotalObjMois" type="number" value="500">
+        </div>
+      </div>
+    </div>
+
+    <!-- Sous-catégories -->
+    <div class="sous-blocs-ligne">
+
+      <div class="sous-bloc sous-bloc-epargne" data-epargne-categorie="pea">
+        <h3>📈 PEA</h3>
+
+        <div class="ligne-epargne">
+          <label>Cumul injection</label>
+          <input id="peaCumulInjection" type="number" value="550">
+        </div>
+
+        <div class="ligne-epargne">
+          <label>Mois précédent</label>
+          <input id="peaMoisPrecedent" type="number" value="200">
+        </div>
+
+        <div class="ligne-epargne">
+          <label>Obj/mois</label>
+          <input id="peaObjMois" type="number" value="200">
+        </div>
+      </div>
+
+      <div class="sous-bloc sous-bloc-epargne" data-epargne-categorie="saisonnier">
+        <h3>🌴 Saisonnier</h3>
+
+        <div class="ligne-epargne">
+          <label>Cumul injection</label>
+          <input id="saisonnierCumulInjection" type="number" value="120">
+        </div>
+
+        <div class="ligne-epargne">
+          <label>Mois précédent</label>
+          <input id="saisonnierMoisPrecedent" type="number" value="100">
+        </div>
+
+        <div class="ligne-epargne">
+          <label>Obj/mois</label>
+          <input id="saisonnierObjMois" type="number" value="50">
+        </div>
+      </div>
+
+      <div class="sous-bloc sous-bloc-epargne" data-epargne-categorie="matelas">
+        <h3>🛟 Matelas</h3>
+
+        <div class="ligne-epargne">
+          <label>Cumul injection</label>
+          <input id="matelasCumulInjection" type="number" value="650">
+        </div>
+
+        <div class="ligne-epargne">
+          <label>Mois précédent</label>
+          <input id="matelasMoisPrecedent" type="number" value="100">
+        </div>
+
+        <div class="ligne-epargne">
+          <label>Obj/mois</label>
+          <input id="matelasObjMois" type="number" value="100">
+        </div>
+      </div>
+
+      <div class="sous-bloc sous-bloc-epargne" data-epargne-categorie="projets">
+        <h3>🚀 Projets</h3>
+
+        <div class="ligne-epargne">
+          <label>Cumul injection</label>
+          <input id="projetsCumulInjection" type="number" value="200">
+        </div>
+
+        <div class="ligne-epargne">
+          <label>Mois précédent</label>
+          <input id="projetsMoisPrecedent" type="number" value="100">
+        </div>
+
+        <div class="ligne-epargne">
+          <label>Obj/mois</label>
+          <input id="projetsObjMois" type="number" value="150">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
 
 </body>
 
 <footer class="footer-version">
-  Suivi Budget v1.2 | Refresh Bug Fix | Auteur: Alexis Caralp | Date: 28/01/2026</footer>
+  Suivi Budget v2.0 | Add Spare | Auteur: Alexis Caralp | Date: 27/04/2026</footer>
 
 <!-- Panneau Debug -->
 
