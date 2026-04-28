@@ -670,25 +670,67 @@ input[type="text"]:focus {
   }
 }
 /* =========================
-   FIX OVERFLOW MOBILE
+   FIX MOBILE BLOCS 1 & 2
    ========================= */
 @media (max-width: 767px) {
 
   #Bloc1,
   #Bloc2 {
-    overflow: hidden;
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #Bloc1 .sous-bloc,
+  #Bloc2 .sous-bloc {
+    overflow: visible !important;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #Bloc1 .form-ajout,
+  #Bloc2 .form-ajout {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    width: 100%;
+    max-width: 100%;
+    gap: 8px;
+  }
+
+  #Bloc1 .form-ajout input,
+  #Bloc2 .form-ajout input {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #Bloc1 .btn-ajouter,
+  #Bloc2 .btn-ajouter {
+    white-space: nowrap;
+    padding: 9px 12px;
+    font-size: 13px;
   }
 
   .ligne-charge {
+    grid-template-columns: 1fr auto auto auto;
+    gap: 5px;
     width: 100%;
-    min-width: 0;
   }
 
-  .ligne-charge > * {
-    min-width: 0;
+  .btn-modifier,
+  .btn-supprimer {
+    padding: 3px 7px !important;
+    font-size: 11px !important;
+    border-radius: 999px !important;
   }
 
-  .sous-bloc {
-    overflow-x: hidden;
+  input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    accent-color: #56ab6f;
+  }
+
+  .input-engage {
+    width: 58px;
+    min-width: 58px;
   }
 }
