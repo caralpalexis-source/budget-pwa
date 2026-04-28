@@ -384,3 +384,46 @@ h3 { text-align: center; font-family: Gilroy; font-weight: bold; color: #0c23ec;
   margin-top: 4px;
   text-align: right;
 }
+
+/* =========================
+   BLOCS REPLIABLES
+   ========================= */
+
+.bloc-kpi {
+  position: relative;
+}
+
+.btn-toggle-bloc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px auto 14px auto;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(70, 120, 90, 0.25);
+  background: rgba(255, 255, 255, 0.8);
+  color: #24593a;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(30, 70, 45, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-toggle-bloc:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(30, 70, 45, 0.14);
+}
+
+.bloc-kpi.bloc-replie > *:not(img):not(h2):not(.btn-toggle-bloc) {
+  display: none !important;
+}
+
+.bloc-kpi.bloc-replie {
+  min-height: auto;
+  padding-bottom: 16px;
+}
+
+.bloc-kpi.bloc-replie h2 {
+  margin-bottom: 8px;
+}
