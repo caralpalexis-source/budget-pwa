@@ -161,6 +161,7 @@ h3 {
   justify-content: flex-start;
   width: 100%;
   max-width: 100%;
+  min-width: 0;
   padding: 24px;
   border-radius: var(--radius-xl);
   border: 1px solid var(--card-border);
@@ -666,5 +667,28 @@ input[type="text"]:focus {
   #Bloc4B,
   #Bloc5 {
     grid-column: 1 / -1 !important;
+  }
+}
+/* =========================
+   FIX OVERFLOW MOBILE
+   ========================= */
+@media (max-width: 767px) {
+
+  #Bloc1,
+  #Bloc2 {
+    overflow: hidden;
+  }
+
+  .ligne-charge {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .ligne-charge > * {
+    min-width: 0;
+  }
+
+  .sous-bloc {
+    overflow-x: hidden;
   }
 }
