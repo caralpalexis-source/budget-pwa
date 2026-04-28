@@ -643,3 +643,28 @@ input[type="text"]:focus {
     max-width: 100%;
   }
 }
+
+/* =========================
+   MOBILE - 1 BLOC PAR LIGNE
+   ========================= */
+@media (max-width: 767px) {
+  .container-blocs {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .container-blocs > .bloc-kpi {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+  }
+
+  #Bloc1,
+  #Bloc2,
+  #Bloc3,
+  #Bloc4A,
+  #Bloc4B,
+  #Bloc5 {
+    grid-column: 1 / -1 !important;
+  }
+}
