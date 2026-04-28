@@ -19,7 +19,11 @@ function rendreBlocsRepliables() {
         btn.type = "button";
 
         const etatSauvegarde = localStorage.getItem(`etat_${bloc.id}`);
+        const blocsRepliesParDefaut = ["Bloc4A", "Bloc4B", "Bloc5"];
+
         if (etatSauvegarde === "replie") {
+            bloc.classList.add("bloc-replie");
+        } else if (etatSauvegarde === null && blocsRepliesParDefaut.includes(bloc.id)) {
             bloc.classList.add("bloc-replie");
         }
 
