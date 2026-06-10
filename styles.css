@@ -734,3 +734,25 @@ input[type="text"]:focus {
     min-width: 58px;
   }
 }
+/* =========================
+   FIX SCROLL BLOC 3 (iOS Safari / PWA)
+   =========================
+   Cause racine : #listeDepenses est un conteneur scrollable
+   (max-height:300px; overflow-y:auto défini inline dans Bloc3.js).
+   Sur iOS Safari / PWA, sans padding-bottom ni overscroll-behavior,
+   le rebond élastique (rubber-band) masque la dernière ligne sous
+   la barre d'outils dynamique, et le scroll momentum déborde sur
+   la page parent. */
+#listeDepenses {
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scroll-padding-bottom: 24px;
+  padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Garantit que la dernière ligne ne soit jamais collée au bord bas */
+#listeDepenses .ligne-charge:last-child {
+  border-bottom: none;
+  margin-bottom: 4px;
+}
