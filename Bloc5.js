@@ -238,3 +238,4 @@ function lancerProgrammeBloc5() {
     bloc5Render();
 }
 window.lancerProgrammeBloc5 = lancerProgrammeBloc5;
+
